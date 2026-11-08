@@ -487,6 +487,26 @@ footer li { overflow-wrap: normal; }
 .steps li.reveal.in::after { transform: none; }
 .steps:has(li.reveal)::before { transform: scaleX(0); transform-origin: 0 50%; transition: transform 1.4s .2s ease-out; }
 .steps:has(li.reveal.in)::before { transform: none; }
+/* hang tags drop in on their string, swing, and settle; then the lines fill in and "next stop" writes itself */
+.reveal.tagswing { opacity: 0; transform-origin: 50% 1.2rem; transform: rotate(-16deg) translateY(-18px); transition: none; }
+.reveal.tagswing.in { animation: tagSwing 1.8s cubic-bezier(.25,.8,.3,1) forwards; }
+@keyframes tagSwing {
+  0% { opacity: 0; transform: rotate(-16deg) translateY(-18px); }
+  30% { opacity: 1; transform: rotate(9deg) translateY(0); }
+  55% { transform: rotate(-3deg); }
+  75% { transform: rotate(calc(var(--rot, 2.5deg) + 2deg)); }
+  100% { opacity: 1; transform: rotate(var(--rot, 2.5deg)); }
+}
+.tag.reveal dl div, .tag.reveal h3 { opacity: 0; transform: translateY(8px); transition: opacity .5s, transform .5s; }
+.tag.reveal.in h3 { opacity: 1; transform: none; transition-delay: .5s; }
+.tag.reveal.in dl div { opacity: 1; transform: none; }
+.tag.reveal.in dl div:nth-child(1) { transition-delay: .7s; } .tag.reveal.in dl div:nth-child(2) { transition-delay: .85s; }
+.tag.reveal.in dl div:nth-child(3) { transition-delay: 1s; } .tag.reveal.in dl div:nth-child(4) { transition-delay: 1.15s; }
+.tag.reveal dd.hand { clip-path: inset(0 100% 0 0); transition: clip-path 1.1s 1.5s steps(18, end); }
+.tag.reveal.in dd.hand { clip-path: inset(0 0 0 0); }
+@media (hover: hover) { .tag:hover { animation: tagNudge 1.4s ease-in-out; } }
+@keyframes tagNudge { 0%, 100% { transform: rotate(var(--rot, 2.5deg)); } 30% { transform: rotate(calc(var(--rot, 2.5deg) - 4deg)); } 65% { transform: rotate(calc(var(--rot, 2.5deg) + 2deg)); } }
+@media (prefers-reduced-motion: reduce) { .reveal.tagswing, .tag.reveal dl div, .tag.reveal h3 { opacity: 1; transform: rotate(var(--rot, 2.5deg)); } .tag.reveal dl div, .tag.reveal h3 { transform: none; } .tag.reveal dd.hand { clip-path: none; } }
 /* timeline dots pop as their row appears */
 .timeline li.reveal::before { transform: scale(0); transition: transform .5s .25s cubic-bezier(.3,1.6,.5,1); }
 .timeline li.reveal.in::before { transform: none; }
@@ -705,7 +725,7 @@ footer li { overflow-wrap: normal; }
         </div>
         <div class="side">
           <div class="quote"><p>When kids have pride in what they wear, they will strive to understand the history behind it as well.</p></div>
-          <div class="tag" style="transform: rotate(-2deg)">
+          <div class="tag" style="--rot: -2deg; transform: rotate(-2deg)">
             <h3>Khadi</h3>
             <dl>
               <div><dt>What</dt><dd>Hand-spun, hand-woven cloth used in dupattas</dd></div>
@@ -1132,6 +1152,7 @@ if (new Date() > new Date("2026-12-05T12:00:00-06:00")) document.querySelectorAl
     ["#view-home .mosaic figure", "pop"],
     ["#view-home .patch, #view-home .ticket", ""],
     ["#view-home .band .head", ""],
+    [".intro .tag, #view-about .tag", "tagswing"],
     ["#view-home .steps li", "step"],
     /* other pages */
     [sub(".page-hero .eyebrow, .page-hero .lede, .page-hero .btns"), ""],
@@ -1139,7 +1160,6 @@ if (new Date() > new Date("2026-12-05T12:00:00-06:00")) document.querySelectorAl
     [sub(".head, .story > p, .story > h2, .band .prose > p, .band .prose > h2, .faq, .panel, .mail, .patch"), ""],
     [sub(".photo-card, .callout"), "left"],
     [sub(".quote"), "right"],
-    [sub(".tag"), "swing"],
     [sub(".tags li"), "chip"],
     [sub(".sizes > div"), "flip"],
     [sub(".checks li, .timeline li"), "left"],
