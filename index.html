@@ -3,12 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Threads of Joy · Traditional Indian clothing for girls in New Delhi</title>
+<meta name="description" content="Threads of Joy is a student-led nonprofit in Omaha that collects gently used traditional Indian clothing and sends it to girls in New Delhi, so they can take part in the celebrations central to their culture.">
+<link rel="canonical" href="https://thethreadsofjoy.org/">
 <link rel="icon" href="logo.png">
-</head>
-<body>
-<title>Threads of Joy</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Threads of Joy collects gently used traditional Indian clothing in Omaha and sends it to girls in New Delhi.">
+<link rel="apple-touch-icon" href="logo.png">
+<meta name="theme-color" content="#9a4529">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Threads of Joy">
+<meta property="og:title" content="Threads of Joy · Everyone deserves to feel beautiful">
+<meta property="og:description" content="Donate gently used traditional Indian clothing in Omaha for girls in New Delhi.">
+<meta property="og:url" content="https://thethreadsofjoy.org/">
+<meta property="og:image" content="https://thethreadsofjoy.org/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..900,100,1;1,9..144,400..700,100,1&family=Figtree:wght@400;500;600;700&family=Gochi+Hand&family=Marcellus&display=swap">
@@ -387,11 +396,23 @@ footer .legal { border-top: 1px dashed color-mix(in srgb, var(--on-footer) 30%, 
 .ig-grid .cta-tile span { font-weight: 700; overflow-wrap: anywhere; }
 .ig-grid .cta-tile small { font-family: var(--f-hand); font-size: 1.2rem; }
 @media (max-width: 720px) { .ig-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) {
+  .ig-grid { gap: .7rem; }
+  .ig-grid .cta-tile { gap: .45rem; padding: .75rem; }
+  .ig-grid .cta-tile .ig-badge { width: 44px; height: 44px; }
+  .ig-grid .cta-tile span { font-size: .85rem; }
+  .ig-grid .cta-tile small { display: none; }
+  .announce b { display: none; }
+  .announce .wrap { font-size: .85rem; gap: .2rem .7rem; }
+}
+footer li { overflow-wrap: anywhere; }
 </style>
+</head>
+<body>
 
 <div class="grain" aria-hidden="true"></div>
 
-<div class="announce">
+<div class="announce" data-until-show>
   <div class="wrap">
     <b>Save the date</b>
     <span>Threads of Joy Fashion Show · Friday, December 4, 2026</span>
@@ -512,8 +533,8 @@ footer .legal { border-top: 1px dashed color-mix(in srgb, var(--on-footer) 30%, 
       <div class="way">
         <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3 10.5 13.5"/><path d="M21 3 14.5 21l-4-7.5L3 9.5 21 3z"/></svg></span>
         <h3>Give to shipping</h3>
-        <p>Don't have clothing to donate? You can still make a difference. Our GoFundMe covers shipping and supply costs so we can reach more kids in need.</p>
-        <a class="btn ghost" data-link="gofundme" href="#contact">Donate on GoFundMe</a>
+        <p>Don't have clothing to donate? You can still make a difference. Money donations cover shipping and supply costs so we can reach more kids in need.</p>
+        <a class="btn ghost" data-link="gofundme" data-fallback="Email us to give" href="#contact">Donate on GoFundMe</a>
       </div>
       <div class="way">
         <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7.5-4.6-7.5-10.2A4.1 4.1 0 0 1 12 7.4a4.1 4.1 0 0 1 7.5 2.4C19.5 15.4 12 20 12 20z"/></svg></span>
@@ -524,7 +545,7 @@ footer .legal { border-top: 1px dashed color-mix(in srgb, var(--on-footer) 30%, 
     </div>
   </div>
 
-  <div class="wrap section">
+  <div class="wrap section" data-until-show>
     <div class="ticket">
       <div class="stub"><b>4</b><span>Dec 2026</span></div>
       <div class="info">
@@ -561,11 +582,6 @@ footer .legal { border-top: 1px dashed color-mix(in srgb, var(--on-footer) 30%, 
         <p class="sign">Kavya Dutt Bhardwaj<small>Founder, Threads of Joy</small></p>
       </div>
       <div class="side">
-        <div class="slot">
-          <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="m21 16-5-5-8 8"/></svg></span>
-          <b>Kavya dancing in her lehenga</b>
-          <small>Add a photo or short video here</small>
-        </div>
         <div class="quote"><p>I didn't have to erase any part of myself to fit in.</p></div>
       </div>
     </div>
@@ -693,7 +709,7 @@ footer .legal { border-top: 1px dashed color-mix(in srgb, var(--on-footer) 30%, 
       <details><summary>Can I donate jewelry or bangles?</summary><p>Right now we're focused on clothing only. We may add jewelry in a future drive.</p></details>
       <details><summary>Where do the clothes end up?</summary><p>With girls in underserved communities in New Delhi, through our partner NGO there. It distributes clothing through schools, children's homes and community programs.</p></details>
       <details><summary>What happens to items you can't use?</summary><p>Anything that doesn't meet our standards goes to Goodwill, so it still gets a second life.</p></details>
-      <details><summary>Can I give money instead?</summary><p>Yes. Shipping clothing to India is our biggest cost. Donations to our GoFundMe go toward shipping and packing supplies.</p></details>
+      <details><summary>Can I give money instead?</summary><p>Yes. Shipping clothing to India is our biggest cost, and money donations go toward shipping and packing supplies. Email us at threadsofjoyteam@gmail.com and we'll tell you how to give.</p></details>
     </div>
   </div>
 </section>
@@ -709,7 +725,7 @@ footer .legal { border-top: 1px dashed color-mix(in srgb, var(--on-footer) 30%, 
     <svg class="edge bottom" viewBox="0 0 1200 24" preserveAspectRatio="none" aria-hidden="true"><path d="M0 24 L0.0 7.4 L25.8 17.8 L49.5 8.1 L76.2 6.0 L100.2 9.6 L129.1 4.5 L147.2 3.1 L179.3 14.1 L193.6 13.8 L231.5 13.5 L251.6 3.9 L268.2 11.5 L293.8 4.3 L321.4 3.5 L349.5 7.3 L379.8 11.3 L402.0 8.0 L427.3 10.3 L446.9 14.0 L481.9 16.4 L502.9 5.8 L521.2 7.6 L544.0 11.2 L573.6 16.5 L598.4 13.5 L629.9 3.0 L645.9 12.9 L674.6 18.7 L698.6 2.9 L726.8 15.5 L746.8 3.0 L772.7 18.4 L803.6 3.4 L821.4 4.6 L843.8 11.6 L870.5 11.9 L899.3 4.3 L928.2 5.1 L952.0 3.4 L973.9 6.4 L996.8 13.7 L1029.2 7.9 L1055.4 4.5 L1073.5 16.7 L1102.0 3.2 L1131.9 6.4 L1146.6 11.3 L1172.6 7.7 L1200.0 2.9 L1200 24 Z"/></svg>
   </div>
 
-  <div class="wrap section">
+  <div class="wrap section" id="impact-counters">
     <div class="counters">
       <div class="counter"><b data-stat="collected">Counting now</b><span>pieces of clothing collected</span></div>
       <div class="counter"><b data-stat="shipped">First package soon</b><span>pieces delivered in Delhi</span></div>
@@ -728,13 +744,6 @@ footer .legal { border-top: 1px dashed color-mix(in srgb, var(--on-footer) 30%, 
     </ol>
   </div>
 
-  <div class="wrap section">
-    <div class="slot" style="aspect-ratio: 16 / 7">
-      <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="m21 16-5-5-8 8"/></svg></span>
-      <b>Photos from Delhi go here</b>
-      <small>Shared with permission from our NGO partners</small>
-    </div>
-  </div>
 </section>
 
 <!-- ================= PARTNERS ================= -->
@@ -785,7 +794,7 @@ footer .legal { border-top: 1px dashed color-mix(in srgb, var(--on-footer) 30%, 
       <p class="eyebrow">Volunteer</p>
       <h1>Lend a hand, or a few hours</h1>
       <p class="lede">Most of our volunteers are South Asian teens in Omaha. You don't need any experience, just a little time and care.</p>
-      <div class="btns"><a class="btn" data-link="volunteerForm" href="#contact">Fill out the interest form</a></div>
+      <div class="btns"><a class="btn" data-link="volunteerForm" data-fallback="Email us to volunteer" href="#contact">Fill out the interest form</a></div>
     </div>
     <svg class="edge bottom" viewBox="0 0 1200 24" preserveAspectRatio="none" aria-hidden="true"><path d="M0 24 L0.0 7.4 L25.8 17.8 L49.5 8.1 L76.2 6.0 L100.2 9.6 L129.1 4.5 L147.2 3.1 L179.3 14.1 L193.6 13.8 L231.5 13.5 L251.6 3.9 L268.2 11.5 L293.8 4.3 L321.4 3.5 L349.5 7.3 L379.8 11.3 L402.0 8.0 L427.3 10.3 L446.9 14.0 L481.9 16.4 L502.9 5.8 L521.2 7.6 L544.0 11.2 L573.6 16.5 L598.4 13.5 L629.9 3.0 L645.9 12.9 L674.6 18.7 L698.6 2.9 L726.8 15.5 L746.8 3.0 L772.7 18.4 L803.6 3.4 L821.4 4.6 L843.8 11.6 L870.5 11.9 L899.3 4.3 L928.2 5.1 L952.0 3.4 L973.9 6.4 L996.8 13.7 L1029.2 7.9 L1055.4 4.5 L1073.5 16.7 L1102.0 3.2 L1131.9 6.4 L1146.6 11.3 L1172.6 7.7 L1200.0 2.9 L1200 24 Z"/></svg>
   </div>
@@ -835,6 +844,7 @@ footer .legal { border-top: 1px dashed color-mix(in srgb, var(--on-footer) 30%, 
       <p class="eyebrow">Email the team</p>
       <div class="row">
         <span class="email" id="email-text">threadsofjoyteam@gmail.com</span>
+        <a class="btn" href="mailto:threadsofjoyteam@gmail.com">Send an email</a>
         <button class="btn ghost" id="copy-email" type="button">Copy email</button>
       </div>
       <p class="copied" id="copied" aria-live="polite"></p>
@@ -853,7 +863,7 @@ footer .legal { border-top: 1px dashed color-mix(in srgb, var(--on-footer) 30%, 
         <p>Tell us who you are and how you'd like to help: hosting a donation box, sharing a drive, or helping with distribution or shipping. We'll set up a short call.</p>
         <a class="btn ghost" href="#partners">See our partners</a>
       </div>
-      <div class="card">
+      <div class="card" data-needs="contactForm">
         <p class="eyebrow">Inquiry form</p>
         <h3>Prefer a form?</h3>
         <p>Send us your question through our form and a team member will reply by email.</p>
@@ -911,7 +921,7 @@ footer .legal { border-top: 1px dashed color-mix(in srgb, var(--on-footer) 30%, 
       <div>
         <h4>Get in touch</h4>
         <ul>
-          <li>threadsofjoyteam@gmail.com</li>
+          <li><a href="mailto:threadsofjoyteam@gmail.com">threadsofjoyteam@gmail.com</a></li>
           <li><a href="https://www.instagram.com/threadsofjoy_official/" target="_blank" rel="noopener">Instagram @threadsofjoy_official</a></li>
           <li><a href="#contact">Contact page</a></li>
         </ul>
@@ -919,7 +929,7 @@ footer .legal { border-top: 1px dashed color-mix(in srgb, var(--on-footer) 30%, 
     </div>
     <div class="legal">
       <span>© 2026 Threads of Joy · A student-led nonprofit</span>
-      <span>Omaha, Nebraska → New Delhi, India</span>
+      <span>thethreadsofjoy.org · Omaha, Nebraska → New Delhi, India</span>
     </div>
   </div>
 </footer>
@@ -966,18 +976,20 @@ show(location.hash.slice(1), false);
 document.querySelectorAll("[data-link]").forEach(a => {
   const url = LINKS[a.dataset.link];
   if (url) { a.href = url; a.target = "_blank"; a.rel = "noopener"; return; }
-  a.classList.add("soon");
-  a.setAttribute("aria-disabled", "true");
-  const chip = document.createElement("span");
-  chip.className = "soon-chip"; chip.textContent = "Soon";
-  a.appendChild(chip);
-  a.addEventListener("click", e => { e.preventDefault(); location.hash = "contact"; });
+  a.href = "#contact";
+  if (a.dataset.fallback) a.textContent = a.dataset.fallback;
 });
+document.querySelectorAll("[data-needs]").forEach(el => { if (!LINKS[el.dataset.needs]) el.hidden = true; });
 
+let anyStat = false;
 document.querySelectorAll("[data-stat]").forEach(el => {
   const v = STATS[el.dataset.stat];
-  if (v) el.textContent = v; else el.classList.add("pending");
+  if (v) { el.textContent = v; anyStat = true; } else el.closest(".counter").hidden = true;
 });
+if (!anyStat) document.getElementById("impact-counters").hidden = true;
+
+/* Hide fashion-show promos automatically after the event */
+if (new Date() > new Date("2026-12-05T12:00:00-06:00")) document.querySelectorAll("[data-until-show]").forEach(el => { el.hidden = true; });
 
 const copiedMsg = document.getElementById("copied");
 document.getElementById("copy-email").addEventListener("click", () => {
