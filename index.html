@@ -195,7 +195,7 @@ nav .nav-cta[aria-current="page"]::after { display: none; }
 
 /* ---------- Steps ---------- */
 .steps { list-style: none; margin: 2.5rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem; position: relative; counter-reset: step; }
-.steps::before { content: ""; position: absolute; top: 30px; left: 10%; right: 10%; border-top: 2px dashed var(--stitch); opacity: .6; }
+.steps::before { content: ""; position: absolute; top: 30px; left: 30px; right: calc((100% - 5rem) / 3 - 30px); border-top: 2px dashed var(--stitch); opacity: .6; }
 .steps li { display: grid; gap: .55rem; justify-items: start; counter-increment: step; position: relative; min-width: 0; }
 .steps li::before {
   content: counter(step); width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center;
@@ -256,7 +256,7 @@ nav .nav-cta[aria-current="page"]::after { display: none; }
 /* ---------- About ---------- */
 .two-col { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 4rem; align-items: start; }
 @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; gap: 2.5rem; } }
-.story p:first-of-type::first-letter { float: left; font: 850 4.2rem/.82 var(--f-display); font-variation-settings: "SOFT" 100, "WONK" 1; color: var(--rust); margin: .35rem .6rem 0 0; }
+.story p.dropcap-off::first-letter { float: left; font: 850 4.2rem/.82 var(--f-display); font-variation-settings: "SOFT" 100, "WONK" 1; color: var(--rust); margin: .35rem .6rem 0 0; }
 .sign { font-family: var(--f-hand); font-size: 1.7rem; color: var(--rust); line-height: 1.1; }
 .sign small { display: block; font-family: var(--f-body); font-size: .9rem; color: var(--ink-soft); margin-top: .2rem; }
 .side { position: sticky; top: 6.5rem; display: grid; gap: 1.5rem; }
@@ -369,7 +369,7 @@ footer .legal { border-top: 1px dashed color-mix(in srgb, var(--on-footer) 30%, 
 
 /* ---------- Stats strip ---------- */
 .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: var(--card); border-radius: var(--r); box-shadow: var(--shadow); margin-top: 3.5rem; }
-.stats div { padding: 1.6rem 1.8rem; display: grid; gap: .25rem; }
+.stats div { padding: 1.6rem 1.8rem; display: grid; gap: .25rem; align-content: start; }
 .stats div + div { border-left: 2px dashed var(--line); }
 .stats b { font: 820 clamp(1.8rem, 3.4vw, 2.5rem)/1 var(--f-display); font-variation-settings: "SOFT" 100, "WONK" 1; color: var(--rust); }
 .stats span { color: var(--ink-soft); font-size: .98rem; }
@@ -428,6 +428,44 @@ footer li { overflow-wrap: anywhere; }
 .more-link { font-weight: 700; text-decoration: none; }
 .more-link:hover { text-decoration: underline; }
 .ig-quote { max-width: 46rem; margin-top: 2rem; }
+
+/* ---------- Phone polish ---------- */
+.announce .short { display: none; }
+footer li { overflow-wrap: normal; }
+@media (max-width: 600px) {
+  .announce .long { display: none; }
+  .announce .short { display: inline; }
+  .announce .wrap { flex-wrap: nowrap; gap: .8rem; }
+  .hero .btns .btn { flex: 1 1 100%; }
+  .section { padding-block: 3.25rem 0; }
+  .page-hero > .wrap { padding-block: 2.5rem 2.25rem; }
+  .page-hero { margin-bottom: 0; }
+  .band { margin-block: 3.5rem; }
+  .band > .wrap { padding-block: 2.75rem; }
+  .view { padding-bottom: 3.5rem; }
+  .steps::before { display: none; }
+  .steps li:not(:last-child)::after { content: ""; position: absolute; left: 29px; top: 72px; bottom: -1.5rem; border-left: 2px dashed var(--stitch); opacity: .6; }
+  .patch { border-radius: 26px; }
+  footer .cols { grid-template-columns: 1fr 1fr; gap: 2rem 1.25rem; padding-block: 3.25rem 2rem; }
+  .ig-grid .cta-tile span { font-size: .9rem; line-height: 1.3; }
+}
+
+/* ---------- Scroll motion ---------- */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity .75s cubic-bezier(.2,.7,.2,1), transform .75s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0ms); }
+.reveal.pop { transform: translateY(18px) scale(.95); }
+.reveal.in { opacity: 1; transform: none; }
+.site-header .bar, .brand img, .brand span { transition: padding .3s ease, width .3s ease, height .3s ease, font-size .3s ease; }
+.site-header.scrolled .bar { padding-block: .4rem; }
+.site-header.scrolled .brand img { width: 38px; height: 38px; }
+.site-header.scrolled { box-shadow: 0 6px 20px -14px rgb(90 40 20 / .35); }
+.collage .photo, .collage .sheet, .collage .rust { will-change: transform; }
+.hero .collage { animation: settle 1s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes settle { from { opacity: 0; transform: rotate(2.5deg) scale(.96); } to { opacity: 1; transform: none; } }
+.hero .copy > * { animation: rise .8s cubic-bezier(.2,.7,.2,1) both; }
+.hero .copy > :nth-child(2) { animation-delay: .08s; } .hero .copy > :nth-child(3) { animation-delay: .16s; } .hero .copy > :nth-child(4) { animation-delay: .24s; }
+.collage .bubble { animation: bob 1.1s .7s cubic-bezier(.3,1.6,.5,1) both; }
+@keyframes bob { from { opacity: 0; transform: rotate(6deg) scale(.6); } to { opacity: 1; transform: rotate(6deg) scale(1); } }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
 </style>
 </head>
 <body>
@@ -437,7 +475,7 @@ footer li { overflow-wrap: anywhere; }
 <div class="announce" data-until-show>
   <div class="wrap">
     <b>Save the date</b>
-    <span>Threads of Joy Fashion Show · Friday, December 4, 2026</span>
+    <span class="long">Threads of Joy Fashion Show · Friday, December 4, 2026</span><span class="short">Fashion Show · Fri, Dec 4</span>
     <a href="#volunteer">Walk or volunteer</a>
   </div>
 </div>
@@ -492,7 +530,7 @@ footer li { overflow-wrap: anywhere; }
     <div class="stats">
       <div><b>Hundreds</b><span>of pieces donated in our first community drive</span></div>
       <div><b>Ages 1–18</b><span>sorted into five size groups for girls</span></div>
-      <div><b>7,600 mi</b><span>from Omaha closets to New Delhi</span></div>
+      <div><b data-count="7600" data-suffix=" mi">7,600 mi</b><span>from Omaha closets to New Delhi</span></div>
     </div>
   </div>
 
@@ -906,7 +944,7 @@ footer li { overflow-wrap: anywhere; }
     <div class="mail">
       <p class="eyebrow">Email the team</p>
       <div class="row">
-        <span class="email" id="email-text">threadsofjoyteam@gmail.com</span>
+        <span class="email" id="email-text">threadsofjoyteam<wbr>@gmail.com</span>
         <a class="btn" href="mailto:threadsofjoyteam@gmail.com">Send an email</a>
         <button class="btn ghost" id="copy-email" type="button">Copy email</button>
       </div>
@@ -953,7 +991,7 @@ footer li { overflow-wrap: anywhere; }
     <a href="https://www.instagram.com/threadsofjoy_official/" target="_blank" rel="noopener" aria-label="Donation box post on Instagram"><img src="photos/donation-box.jpg" alt="A Threads of Joy donation box full of clothing" loading="lazy"></a>
     <a class="cta-tile" href="https://www.instagram.com/threadsofjoy_official/" target="_blank" rel="noopener">
       <span class="ig-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6"/></svg></span>
-      <span>@threadsofjoy_official</span>
+      <span>@threadsofjoy_<wbr>official</span>
       <small>Drives, sorting days &amp; updates</small>
     </a>
   </div>
@@ -984,8 +1022,8 @@ footer li { overflow-wrap: anywhere; }
       <div>
         <h4>Get in touch</h4>
         <ul>
-          <li><a href="mailto:threadsofjoyteam@gmail.com">threadsofjoyteam@gmail.com</a></li>
-          <li><a href="https://www.instagram.com/threadsofjoy_official/" target="_blank" rel="noopener">Instagram @threadsofjoy_official</a></li>
+          <li><a href="mailto:threadsofjoyteam@gmail.com">threadsofjoyteam<wbr>@gmail.com</a></li>
+          <li><a href="https://www.instagram.com/threadsofjoy_official/" target="_blank" rel="noopener">Instagram</a></li>
           <li><a href="#contact">Contact page</a></li>
         </ul>
       </div>
@@ -1053,6 +1091,67 @@ if (!anyStat) document.getElementById("impact-counters").hidden = true;
 
 /* Hide fashion-show promos automatically after the event */
 if (new Date() > new Date("2026-12-05T12:00:00-06:00")) document.querySelectorAll("[data-until-show]").forEach(el => { el.hidden = true; });
+
+/* ---- Scroll motion: things rise into place as they come on screen ---- */
+(function () {
+  const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const head = document.getElementById("site-header");
+  const onScroll = () => head.classList.toggle("scrolled", scrollY > 40);
+  addEventListener("scroll", onScroll, { passive: true }); onScroll();
+  if (reduce || !("IntersectionObserver" in window)) return;
+
+  const groups = [
+    [".view .head, .intro .prose, .intro .tag, .page-hero .wrap > *, .faq, .ticket, .callout, .quote, .photo-card, .story > *, .timeline li, .insta .top", false],
+    [".stats > div, .steps li, .way, .card, .role, .panel, .counter, .tags li, .sizes > div", false],
+    [".mosaic figure, .gallery figure, .ig-grid a, .patch", true]
+  ];
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add("in");
+      io.unobserve(e.target);
+      const c = e.target.querySelector("[data-count]");
+      if (c) countUp(c);
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+
+  groups.forEach(([sel, pop]) => {
+    document.querySelectorAll(sel).forEach((el) => {
+      if (el.closest(".hero")) return;
+      const r = el.getBoundingClientRect();
+      const visibleNow = r.height && r.top < innerHeight && r.bottom > 0;
+      const sibs = [...el.parentElement.children].filter((n) => n.matches(sel));
+      el.style.setProperty("--d", Math.min(sibs.indexOf(el), 5) * 90 + "ms");
+      if (visibleNow) { const c = el.querySelector("[data-count]"); if (c) countUp(c); return; }
+      el.classList.add("reveal");
+      if (pop) el.classList.add("pop");
+      io.observe(el);
+    });
+  });
+
+  function countUp(el) {
+    if (el.dataset.done) return; el.dataset.done = 1;
+    const end = +el.dataset.count, suf = el.dataset.suffix || "", t0 = performance.now(), dur = 1400;
+    const step = (t) => {
+      const k = Math.min(1, (t - t0) / dur), v = Math.round(end * (1 - Math.pow(1 - k, 3)));
+      el.textContent = v.toLocaleString() + suf;
+      if (k < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  /* gentle drift on the hero collage while scrolling */
+  const layers = [[".collage .rust", 0.05], [".collage .photo", -0.03]].map(([q, f]) => [document.querySelector(q), f]);
+  let ticking = false;
+  addEventListener("scroll", () => {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(() => {
+      const y = Math.min(scrollY, 700);
+      layers.forEach(([el, f]) => { if (el) el.style.translate = "0 " + (y * f).toFixed(1) + "px"; });
+      ticking = false;
+    });
+  }, { passive: true });
+})();
 
 const copiedMsg = document.getElementById("copied");
 document.getElementById("copy-email").addEventListener("click", () => {
