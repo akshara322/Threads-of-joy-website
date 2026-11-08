@@ -406,6 +406,30 @@ footer .legal { border-top: 1px dashed color-mix(in srgb, var(--on-footer) 30%, 
   .announce .wrap { font-size: .85rem; gap: .2rem .7rem; }
 }
 footer li { overflow-wrap: anywhere; }
+
+/* ---------- Photos ---------- */
+.mosaic { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, 1fr); gap: 1rem; margin-top: 2rem; }
+.mosaic figure { margin: 0; overflow: hidden; border-radius: 18px; box-shadow: var(--shadow); background: var(--paper-2); }
+.mosaic figure:first-child { grid-row: span 2; }
+.mosaic img { display: block; width: 100%; height: 100%; aspect-ratio: 1; object-fit: cover; }
+.mosaic figure:first-child img { aspect-ratio: auto; object-position: 50% 40%; }
+@media (max-width: 700px) {
+  .mosaic { grid-template-columns: 1fr 1fr; }
+  .mosaic figure:first-child { grid-column: 1 / -1; grid-row: auto; }
+  .mosaic figure:first-child img { aspect-ratio: 4 / 5; }
+}
+.gallery { display: grid; grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr)); gap: 1.5rem 1.1rem; margin-top: 2rem; }
+@media (max-width: 900px) { .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.gallery figure { margin: 0; display: grid; gap: .55rem; align-content: start; }
+.gallery img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 16px; box-shadow: var(--shadow); background: var(--paper-2); }
+.gallery figcaption { font-size: .95rem; color: var(--ink-soft); line-height: 1.4; }
+@media (max-width: 600px) { .gallery { grid-template-columns: 1fr 1fr; gap: 1.1rem .8rem; } .gallery figcaption { font-size: .85rem; } }
+.photo-card { margin: 0; display: grid; gap: .6rem; }
+.photo-card img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 35%; border-radius: var(--r); box-shadow: var(--shadow); }
+.photo-card figcaption { font-size: .92rem; color: var(--ink-soft); }
+.more-link { font-weight: 700; text-decoration: none; }
+.more-link:hover { text-decoration: underline; }
+.ig-quote { max-width: 46rem; margin-top: 2rem; }
 </style>
 </head>
 <body>
@@ -511,6 +535,22 @@ footer li { overflow-wrap: anywhere; }
   </div>
 
   <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Our first drive</p>
+      <h2>Ganesh Chaturthi Donation Drive</h2>
+      <p class="muted">On September 20, Omaha families filled bins and bags with lehengas, kurtas and cholis at the Hindu Temple of Nebraska.</p>
+    </div>
+    <div class="mosaic">
+      <figure><img src="photos/drive-table-kavya.jpg" alt="Threads of Joy collection table at the Hindu Temple, with bins and bags of donated clothing" width="800" height="970" loading="lazy"></figure>
+      <figure><img src="photos/drive-fabrics.jpg" alt="Folded embroidered lehengas and dupattas" width="800" height="887" loading="lazy"></figure>
+      <figure><img src="photos/drive-trunk.jpg" alt="A car trunk loaded with donation bins outside the Hindu Temple" width="800" height="887" loading="lazy"></figure>
+      <figure><img src="photos/drive-closet.jpg" alt="Bags and bins of donations stored and waiting to be sorted" width="800" height="887" loading="lazy"></figure>
+      <figure><img src="photos/drive-table.jpg" alt="Donation bins with Threads of Joy flyers on a table" width="800" height="887" loading="lazy"></figure>
+    </div>
+    <p style="margin-top:1.25rem"><a class="more-link" href="#impact">See more from the drive →</a></p>
+  </div>
+
+  <div class="wrap section">
     <div class="patch">
       <img src="logo.png" alt="">
       <p class="eyebrow">Our mission</p>
@@ -582,6 +622,7 @@ footer li { overflow-wrap: anywhere; }
         <p class="sign">Kavya Dutt Bhardwaj<small>Founder, Threads of Joy</small></p>
       </div>
       <div class="side">
+        <figure class="photo-card"><img src="photos/drive-table-kavya.jpg" alt="At the Threads of Joy collection table during the Ganesh Chaturthi Donation Drive" width="800" height="970" loading="lazy"><figcaption>Our Ganesh Chaturthi Donation Drive, September 2026</figcaption></figure>
         <div class="quote"><p>I didn't have to erase any part of myself to fit in.</p></div>
       </div>
     </div>
@@ -655,6 +696,16 @@ footer li { overflow-wrap: anywhere; }
       <div><b>9–12</b><span>years</span></div>
       <div><b>12–15</b><span>years</span></div>
       <div><b>15–18</b><span>years</span></div>
+    </div>
+
+    <p class="eyebrow" style="margin-top:2.75rem">Donated by our community</p>
+    <div class="gallery" style="--cols:6">
+      <figure><img src="photos/lehenga-blue.jpg" alt="Light blue lehenga with silver embroidery" width="800" height="887" loading="lazy"><figcaption>Light blue lehenga</figcaption></figure>
+      <figure><img src="photos/kurta-red.jpg" alt="Red kurta set with a gold-woven dupatta" width="800" height="887" loading="lazy"><figcaption>Red kurta set with dupatta</figcaption></figure>
+      <figure><img src="photos/lehenga-lavender.jpg" alt="Lavender lehenga with sequin work" width="800" height="887" loading="lazy"><figcaption>Lavender lehenga</figcaption></figure>
+      <figure><img src="photos/lehenga-pink.jpg" alt="Pink lehenga with an embroidered navy top" width="800" height="887" loading="lazy"><figcaption>Pink lehenga with embroidered top</figcaption></figure>
+      <figure><img src="photos/anarkali-green.jpg" alt="Green printed cotton anarkali for a young girl" width="800" height="887" loading="lazy"><figcaption>Printed cotton anarkali</figcaption></figure>
+      <figure><img src="photos/pavadai-cream.jpg" alt="Cream and gold skirt and top set" width="800" height="887" loading="lazy"><figcaption>Cream and gold skirt set</figcaption></figure>
     </div>
 
     <div class="split" style="margin-top:2.5rem">
@@ -738,10 +789,25 @@ footer li { overflow-wrap: anywhere; }
     <ol class="timeline">
       <li><time>May 2026</time><div class="t"><h3>Threads of Joy begins</h3><p>A poster and logo on Canva turn into a plan: collect outgrown traditional clothing in Omaha for girls in Delhi.</p></div></li>
       <li><time>July 2026</time><div class="t"><h3>The first sets come in</h3><p>Kavya repairs zippers and buttons on her own outfits to donate the first five full sets, and friends and family start adding theirs.</p></div></li>
-      <li><time>Sept 2026</time><div class="t"><h3>First community donation drive</h3><p>Hundreds of donations arrive from Omaha's Indian community.</p></div></li>
+      <li><time>Sept 20, 2026</time><div class="t"><h3>Ganesh Chaturthi Donation Drive</h3><p>Our first community drive, at the Hindu Temple of Nebraska. Omaha families fill bins and bags with lehengas, kurtas and cholis.</p></div></li>
       <li><time>Oct 2026</time><div class="t"><h3>Sorted and packed</h3><p>Volunteers sort every piece into five age groups and prepare a first test package for New Delhi.</p></div></li>
       <li class="next"><time>Dec 4, 2026</time><div class="t"><h3>Threads of Joy Fashion Show</h3><p>Our first big event, celebrating traditional clothing and raising funds for shipping.</p></div></li>
     </ol>
+  </div>
+
+  <div class="wrap section">
+    <div class="head"><p class="eyebrow">September 20 · Hindu Temple of Nebraska</p><h2>Our Ganesh Chaturthi drive</h2></div>
+    <div class="quote ig-quote"><p>Our Ganesh Chaturthi Drive was a huge success! We are overjoyed by the amount of support and involvement from the community.</p></div>
+    <div class="gallery">
+      <figure><img src="photos/drive-poster.jpg" alt="Flyer for the Threads of Joy donation drive at the Hindu Temple on September 20" width="800" height="971" loading="lazy"><figcaption>The flyer for our September 20 drive</figcaption></figure>
+      <figure><img src="photos/drive-table.jpg" alt="Collection table with donation bins" width="800" height="887" loading="lazy"><figcaption>Our collection table at the temple</figcaption></figure>
+      <figure><img src="photos/drive-checklist.jpg" alt="Donation checklist flyers on a bin of folded clothing" width="800" height="887" loading="lazy"><figcaption>A donation checklist on every bin</figcaption></figure>
+      <figure><img src="photos/drive-bags.jpg" alt="Clear bags full of donated clothing" width="800" height="887" loading="lazy"><figcaption>Bags of donations from Omaha families</figcaption></figure>
+      <figure><img src="photos/drive-fabrics.jpg" alt="Folded embroidered pieces" width="800" height="887" loading="lazy"><figcaption>Embroidered pieces, ready to sort</figcaption></figure>
+      <figure><img src="photos/drive-trunk.jpg" alt="Car trunk loaded with donations outside the temple" width="800" height="887" loading="lazy"><figcaption>Loading up after the drive</figcaption></figure>
+      <figure><img src="photos/drive-closet.jpg" alt="Donations stored in a closet before sorting" width="800" height="887" loading="lazy"><figcaption>Everything collected, waiting to be sorted</figcaption></figure>
+      <figure><img src="photos/donation-box.jpg" alt="A cardboard Threads of Joy donation box full of clothing" width="800" height="600" loading="lazy"><figcaption>A Threads of Joy donation box</figcaption></figure>
+    </div>
   </div>
 
 </section>
@@ -885,9 +951,9 @@ footer li { overflow-wrap: anywhere; }
     <a class="btn" href="https://www.instagram.com/threadsofjoy_official/" target="_blank" rel="noopener">Follow us <span class="arr" aria-hidden="true">→</span></a>
   </div>
   <div class="ig-grid">
-    <a href="https://www.instagram.com/threadsofjoy_official/" target="_blank" rel="noopener" aria-label="Threads of Joy flyer on Instagram"><img src="ig-flyer.jpg" alt="Threads of Joy donation flyer: Everyone deserves to feel beautiful"></a>
-    <a href="https://www.instagram.com/threadsofjoy_official/" target="_blank" rel="noopener" aria-label="Threads of Joy on Instagram"><img src="ig-embroidery.jpg" alt="A girl in Delhi wearing an embroidered traditional top"></a>
-    <a class="logo-tile" href="https://www.instagram.com/threadsofjoy_official/" target="_blank" rel="noopener" aria-label="Threads of Joy on Instagram"><img src="logo.png" alt="Threads of Joy logo"></a>
+    <a href="https://www.instagram.com/threadsofjoy_official/" target="_blank" rel="noopener" aria-label="Ganesh Chaturthi drive post on Instagram"><img src="photos/drive-table-kavya.jpg" alt="Threads of Joy collection table at the Ganesh Chaturthi Donation Drive" loading="lazy"></a>
+    <a href="https://www.instagram.com/threadsofjoy_official/" target="_blank" rel="noopener" aria-label="Diwali donations post on Instagram"><img src="photos/lehenga-blue.jpg" alt="A donated light blue lehenga" loading="lazy"></a>
+    <a href="https://www.instagram.com/threadsofjoy_official/" target="_blank" rel="noopener" aria-label="Donation box post on Instagram"><img src="photos/donation-box.jpg" alt="A Threads of Joy donation box full of clothing" loading="lazy"></a>
     <a class="cta-tile" href="https://www.instagram.com/threadsofjoy_official/" target="_blank" rel="noopener">
       <span class="ig-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6"/></svg></span>
       <span>@threadsofjoy_official</span>
@@ -938,7 +1004,7 @@ footer li { overflow-wrap: anywhere; }
 /* ---- Links to fill in: paste each URL between the quotes. ---- */
 const LINKS = {
   gofundme: "",       // GoFundMe page
-  volunteerForm: "",  // Google Form: volunteer interest
+  volunteerForm: "https://docs.google.com/forms/d/e/1FAIpQLScSIIftUd_9DROTDgH3_kQsAKSBQvABCFw-wXC_Tf5CQDiB0g/viewform",  // Google Form: volunteer interest
   contactForm: ""     // Google Form: contact / inquiry
 };
 /* ---- Impact numbers: replace with real counts when ready (leave "" to keep the placeholder). ---- */
