@@ -1101,9 +1101,8 @@ if (new Date() > new Date("2026-12-05T12:00:00-06:00")) document.querySelectorAl
   if (reduce || !("IntersectionObserver" in window)) return;
 
   const groups = [
-    [".view .head, .intro .prose, .intro .tag, .page-hero .wrap > *, .faq, .ticket, .callout, .quote, .photo-card, .story > *, .timeline li, .insta .top", false],
-    [".stats > div, .steps li, .way, .card, .role, .panel, .counter, .tags li, .sizes > div", false],
-    [".mosaic figure, .gallery figure, .ig-grid a, .patch", true]
+    [".mosaic figure, .view .gallery figure", true],
+    [".patch, .ticket", false]
   ];
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
@@ -1114,6 +1113,9 @@ if (new Date() > new Date("2026-12-05T12:00:00-06:00")) document.querySelectorAl
       if (c) countUp(c);
     });
   }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+
+  const stat = document.querySelector("[data-count]");
+  if (stat) io.observe(stat.parentElement);
 
   groups.forEach(([sel, pop]) => {
     document.querySelectorAll(sel).forEach((el) => {
