@@ -450,6 +450,37 @@ footer li { overflow-wrap: normal; }
   .ig-grid .cta-tile span { font-size: .9rem; line-height: 1.3; }
 }
 
+/* ---------- Shorter reading ---------- */
+.lead-p { font-size: 1.2rem; line-height: 1.6; color: var(--ink); }
+.beats { list-style: none; margin: .4rem 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; position: relative; }
+.beats::before { content: ""; position: absolute; top: 1.05rem; left: .5rem; right: 30%; border-top: 2px dashed var(--stitch); opacity: .55; }
+.beats li { position: relative; display: grid; gap: .35rem; align-content: start; padding-top: 2.5rem; min-width: 0; }
+.beats li::before { content: ""; position: absolute; top: .55rem; left: 0; width: 1rem; height: 1rem; border-radius: 50%; background: var(--paper); box-shadow: inset 0 0 0 3px var(--rust); }
+.beats li:last-child::before { background: var(--rust); }
+.beats b { font: 800 1.35rem/1 var(--f-display); font-variation-settings: "SOFT" 100; color: var(--rust); }
+.beats span { font-size: .95rem; line-height: 1.45; color: var(--ink-soft); }
+@media (max-width: 560px) {
+  .beats { grid-template-columns: 1fr; gap: 1.1rem; padding-left: 1.75rem; }
+  .beats::before { top: .9rem; bottom: .9rem; left: .5rem; right: auto; border-top: 0; border-left: 2px dashed var(--stitch); }
+  .beats li { padding-top: 0; }
+  .beats li::before { top: .2rem; left: -1.75rem; }
+}
+.points { display: grid; gap: .9rem; }
+.points > div { padding: 1.1rem 1.25rem 1.15rem 1.35rem; background: var(--card); border-radius: 16px; box-shadow: var(--shadow); display: grid; gap: .3rem; position: relative; overflow: hidden; }
+.points > div::before { content: ""; position: absolute; left: 0; top: 14px; bottom: 14px; border-left: 3px dashed var(--stitch); }
+.points h3 { font-size: 1.15rem; }
+.points p { color: var(--ink-soft); font-size: 1rem; line-height: 1.55; }
+details.more { border: 0; }
+details.more summary { display: inline-flex; align-items: center; gap: .6rem; padding: .7rem 1.2rem; border: 2px dashed var(--stitch); border-radius: 999px; font: 700 1rem var(--f-body); color: var(--rust); cursor: pointer; }
+details.more summary:hover { background: var(--card); }
+details.more summary::after { content: ""; width: 9px; height: 9px; border: 0; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; border-radius: 0; background: none; transform: rotate(45deg) translateY(-3px); transition: transform .25s ease; }
+details.more[open] summary::after { transform: rotate(-135deg) translate(-2px, -2px); }
+details.more .opened, details.more[open] .closed { display: none; }
+details.more[open] .opened { display: inline; }
+.more-body { display: grid; gap: 1.1em; padding-top: 1.25rem; }
+.more-body p { color: var(--ink); padding: 0; max-width: none; }
+details.more[open] .more-body { animation: rise .45s ease both; }
+
 /* ---------- Scroll motion ---------- */
 .reveal { opacity: 0; transform: translateY(26px); transition: opacity .75s cubic-bezier(.2,.7,.2,1), transform .75s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0ms); }
 .reveal.pop { transform: translateY(18px) scale(.95); }
@@ -693,11 +724,21 @@ footer li { overflow-wrap: normal; }
     <div class="two-col">
       <div class="prose story">
         <h2>Why I started Threads of Joy</h2>
-        <p>If someone asked me when I feel the most beautiful, I would have a clear answer. It is when others in my community surround me, celebrating our culture, all dressed up in traditional outfits. I love the feeling of spinning in my sparkly lehenga and jingling as I dance to my favorite Bollywood music.</p>
-        <p>But if you asked me this question 5 years ago, I would have had a very different answer. Little 10-year-old Kavya had a very different idea of beautiful. One that definitely did not include embarrassing myself in my cultural clothing. At 7 years old, my family and I moved from New Delhi, India, to the United States. I was determined to erase every Indian part of myself to make me more American.</p>
-        <p>If I could talk to that little girl now, I would tell her that the US is an amazing place made of all kinds of cultures, religions, and nationalities. I didn't have to erase any part of myself to fit in, and the only way I would find my people was when I learned to embrace every part of myself.</p>
-        <p>As I started to wear traditional clothing more often, I discovered how amazing it felt. I felt a connection to my culture like never before and began to wonder how I hated this all these years. However, through this process, I discovered kids grow out of traditional Indian clothing incredibly fast. It seemed so wasteful, only wearing a piece of clothing once or twice a year before having to tuck it away in a closet for years, not knowing what to do with it.</p>
-        <p>This exact situation made my mind start racing. What else could be done with this clothing? I knew a ton of friends who dealt with the same problem and decided to research what people were doing with their gently used Indian clothing. I discovered an entire community of South Asian women with saris, kurtis, lehengas, and dupattas going unused after Diwali and weddings. That's when I started working on Threads of Joy. It started as a poster and logo on Canva, and snowballed into this amazing organization.</p>
+        <p class="lead-p">If someone asked me when I feel the most beautiful, I would have a clear answer. It is when others in my community surround me, celebrating our culture, all dressed up in traditional outfits. I love the feeling of spinning in my sparkly lehenga and jingling as I dance to my favorite Bollywood music.</p>
+        <ol class="beats" aria-label="Kavya's story in three moments">
+          <li><b>Age 7</b><span>Moved from New Delhi to the United States</span></li>
+          <li><b>Age 10</b><span>Tried to hide every Indian part of herself to fit in</span></li>
+          <li><b>Now</b><span>Proud of her culture, and sharing it with girls in Delhi</span></li>
+        </ol>
+        <details class="more">
+          <summary><span class="closed">Read Kavya's full story</span><span class="opened">Show less</span></summary>
+          <div class="more-body">
+            <p>But if you asked me this question 5 years ago, I would have had a very different answer. Little 10-year-old Kavya had a very different idea of beautiful. One that definitely did not include embarrassing myself in my cultural clothing. At 7 years old, my family and I moved from New Delhi, India, to the United States. I was determined to erase every Indian part of myself to make me more American.</p>
+            <p>If I could talk to that little girl now, I would tell her that the US is an amazing place made of all kinds of cultures, religions, and nationalities. I didn't have to erase any part of myself to fit in, and the only way I would find my people was when I learned to embrace every part of myself.</p>
+            <p>As I started to wear traditional clothing more often, I discovered how amazing it felt. I felt a connection to my culture like never before and began to wonder how I hated this all these years. However, through this process, I discovered kids grow out of traditional Indian clothing incredibly fast. It seemed so wasteful, only wearing a piece of clothing once or twice a year before having to tuck it away in a closet for years, not knowing what to do with it.</p>
+            <p>This exact situation made my mind start racing. What else could be done with this clothing? I knew a ton of friends who dealt with the same problem and decided to research what people were doing with their gently used Indian clothing. I discovered an entire community of South Asian women with saris, kurtis, lehengas, and dupattas going unused after Diwali and weddings. That's when I started working on Threads of Joy. It started as a poster and logo on Canva, and snowballed into this amazing organization.</p>
+          </div>
+        </details>
         <p>When I first started, I would have been overjoyed if even one girl could feel the way I did wearing the clothes I loved. Thank you to everyone who has donated, volunteered, partnered with us, or even just read this message all the way through! Your contribution is seen and so appreciated. It really is so much more than clothing.</p>
         <p class="sign">Kavya Dutt Bhardwaj<small>Founder, Threads of Joy</small></p>
       </div>
@@ -715,12 +756,23 @@ footer li { overflow-wrap: normal; }
         <div class="prose">
           <p class="eyebrow">Why cultural clothing matters</p>
           <h2>The story stitched into a dupatta</h2>
-          <p>Every day, I see more and more of my Indian culture being erased. The chai I would sit on the porch and sip with my grandparents in the afternoons has become the chai tea latte a commuter picks up from Starbucks late to work in the morning, no recognition of where it came from. The dupatta my mom carefully pinned to the shoulder of my lehenga has become the Scandinavian scarf, a new style on prom dresses. There is no recognition of where these things have come from and their importance to our culture.</p>
-          <p>For example, the dupatta is not just a piece of clothing. It is also a symbol of resistance for India during British rule. Sarojini Naidu, an Indian activist who worked alongside Mahatma Gandhi, was a huge activist for a type of fabric used in dupattas known as Khadi. It was part of the Swadeshi movement, which was focused on Indian national pride and boycotting British goods. When these traditions are stolen and made into something more digestible for global audiences, it makes us lose a part of our history and traditions. Even worse, young Indian kids grow up learning that version of our history, instead of where it really originated from.</p>
-          <p>Wearing cultural clothing and understanding the value and history that exist in the embroidery and style is the real mission of Threads of Joy. When kids have pride in what they wear, they will strive to understand the history behind it as well. It encourages education about lost traditions and connects new generations to those who came before. Many of the traditional pieces of clothing in my closet have been passed on by the women in my family for generations, and have sparked my interest in older styles of Indian clothing and how they came to be.</p>
-          <p>The lehenga hanging in the back of your closet or the folded-up sari in your drawer may seem useless to you, but for kids in underserved communities, it can be a dream come true. Many kids feel out of place during festivals and ceremonies without cultural clothing, since their families can't afford it. A common Diwali gift in India is new clothing, and many of these children's families can't afford it. This causes clothing insecurity and, oftentimes, a disconnect from culture.</p>
-          <p>Clothing insecurity is a phenomenon when someone does not have access to clothing that fits properly, is seasonally appropriate, or, in this case, is not appropriate for the occasion. Those who experience this can experience major tolls on their mental health and social dignity. Dignity is at the core of what we do at Threads of Joy, and the connection between clothing and dignity is concrete.</p>
-          <p>That dignity can exist in many ways, but the way in which we hope to reach people is in the light in a little girl's eyes as she holds her very first lehenga that isn't torn or broken. It's beautiful and almost brand new. That dignity exists in a teenager wearing her kurta at her local temple, finally feeling confident in her clothing. The judging stares she once felt on her back suddenly feel like radiant smiles encouraging her through every step. And most importantly, this dignity exists in a new generation growing up confident in their culture and fully aware of the stories that shaped it.</p>
+          <p class="lead-p">Wearing cultural clothing and understanding the value and history that exist in the embroidery and style is the real mission of Threads of Joy.</p>
+          <div class="points">
+            <div><h3>Culture, renamed</h3><p>Chai became the chai tea latte. The dupatta became the "Scandinavian scarf" on prom dresses, with no credit to where they came from.</p></div>
+            <div><h3>A symbol of resistance</h3><p>Sarojini Naidu championed khadi, the cloth used in dupattas, during the Swadeshi movement against British goods.</p></div>
+            <div><h3>Clothing is dignity</h3><p>Many families in Delhi can't afford new clothes for Diwali. A first lehenga that isn't torn can change how a girl feels at her temple.</p></div>
+          </div>
+          <details class="more">
+            <summary><span class="closed">Read the full essay</span><span class="opened">Show less</span></summary>
+            <div class="more-body">
+              <p>Every day, I see more and more of my Indian culture being erased. The chai I would sit on the porch and sip with my grandparents in the afternoons has become the chai tea latte a commuter picks up from Starbucks late to work in the morning, no recognition of where it came from. The dupatta my mom carefully pinned to the shoulder of my lehenga has become the Scandinavian scarf, a new style on prom dresses. There is no recognition of where these things have come from and their importance to our culture.</p>
+              <p>For example, the dupatta is not just a piece of clothing. It is also a symbol of resistance for India during British rule. Sarojini Naidu, an Indian activist who worked alongside Mahatma Gandhi, was a huge activist for a type of fabric used in dupattas known as Khadi. It was part of the Swadeshi movement, which was focused on Indian national pride and boycotting British goods. When these traditions are stolen and made into something more digestible for global audiences, it makes us lose a part of our history and traditions. Even worse, young Indian kids grow up learning that version of our history, instead of where it really originated from.</p>
+              <p>Wearing cultural clothing and understanding the value and history that exist in the embroidery and style is the real mission of Threads of Joy. When kids have pride in what they wear, they will strive to understand the history behind it as well. It encourages education about lost traditions and connects new generations to those who came before. Many of the traditional pieces of clothing in my closet have been passed on by the women in my family for generations, and have sparked my interest in older styles of Indian clothing and how they came to be.</p>
+              <p>The lehenga hanging in the back of your closet or the folded-up sari in your drawer may seem useless to you, but for kids in underserved communities, it can be a dream come true. Many kids feel out of place during festivals and ceremonies without cultural clothing, since their families can't afford it. A common Diwali gift in India is new clothing, and many of these children's families can't afford it. This causes clothing insecurity and, oftentimes, a disconnect from culture.</p>
+              <p>Clothing insecurity is a phenomenon when someone does not have access to clothing that fits properly, is seasonally appropriate, or, in this case, is not appropriate for the occasion. Those who experience this can experience major tolls on their mental health and social dignity. Dignity is at the core of what we do at Threads of Joy, and the connection between clothing and dignity is concrete.</p>
+              <p>That dignity can exist in many ways, but the way in which we hope to reach people is in the light in a little girl's eyes as she holds her very first lehenga that isn't torn or broken. It's beautiful and almost brand new. That dignity exists in a teenager wearing her kurta at her local temple, finally feeling confident in her clothing. The judging stares she once felt on her back suddenly feel like radiant smiles encouraging her through every step. And most importantly, this dignity exists in a new generation growing up confident in their culture and fully aware of the stories that shaped it.</p>
+            </div>
+          </details>
           <p class="read-more">Further reading: <a href="https://www.thecrimson.com/article/2026/5/18/dupatta-thinkpiece/" target="_blank" rel="noopener">a think piece on the dupatta in The Harvard Crimson</a></p>
         </div>
         <div class="side">
@@ -851,7 +903,7 @@ footer li { overflow-wrap: normal; }
     <div class="wrap">
       <p class="eyebrow">Impact</p>
       <h1>Where the clothes go</h1>
-      <p class="lede">We'll post our numbers, shipment updates and stories from our partners here as each package reaches Delhi.</p>
+      <p class="lede">Our progress so far, from the first poster to our first drive.</p>
     </div>
     <svg class="edge bottom" viewBox="0 0 1200 24" preserveAspectRatio="none" aria-hidden="true"><path d="M0 24 L0.0 7.4 L25.8 17.8 L49.5 8.1 L76.2 6.0 L100.2 9.6 L129.1 4.5 L147.2 3.1 L179.3 14.1 L193.6 13.8 L231.5 13.5 L251.6 3.9 L268.2 11.5 L293.8 4.3 L321.4 3.5 L349.5 7.3 L379.8 11.3 L402.0 8.0 L427.3 10.3 L446.9 14.0 L481.9 16.4 L502.9 5.8 L521.2 7.6 L544.0 11.2 L573.6 16.5 L598.4 13.5 L629.9 3.0 L645.9 12.9 L674.6 18.7 L698.6 2.9 L726.8 15.5 L746.8 3.0 L772.7 18.4 L803.6 3.4 L821.4 4.6 L843.8 11.6 L870.5 11.9 L899.3 4.3 L928.2 5.1 L952.0 3.4 L973.9 6.4 L996.8 13.7 L1029.2 7.9 L1055.4 4.5 L1073.5 16.7 L1102.0 3.2 L1131.9 6.4 L1146.6 11.3 L1172.6 7.7 L1200.0 2.9 L1200 24 Z"/></svg>
   </div>
@@ -867,11 +919,11 @@ footer li { overflow-wrap: normal; }
   <div class="wrap section">
     <div class="head"><p class="eyebrow">Our story so far</p><h2>From one poster to a movement</h2></div>
     <ol class="timeline">
-      <li><time>May 2026</time><div class="t"><h3>Threads of Joy begins</h3><p>A poster and logo on Canva turn into a plan: collect outgrown traditional clothing in Omaha for girls in Delhi.</p></div></li>
-      <li><time>July 2026</time><div class="t"><h3>The first sets come in</h3><p>Kavya repairs zippers and buttons on her own outfits to donate the first five full sets, and friends and family start adding theirs.</p></div></li>
-      <li><time>Sept 20, 2026</time><div class="t"><h3>Ganesh Chaturthi Donation Drive</h3><p>Our first community drive, at the Hindu Temple of Nebraska. Omaha families fill bins and bags with lehengas, kurtas and cholis.</p></div></li>
-      <li><time>Oct 2026</time><div class="t"><h3>Sorted and packed</h3><p>Volunteers sort every piece into five age groups and prepare a first test package for New Delhi.</p></div></li>
-      <li class="next"><time>Dec 4, 2026</time><div class="t"><h3>Threads of Joy Fashion Show</h3><p>Our first big event, celebrating traditional clothing and raising funds for shipping.</p></div></li>
+      <li><time>May 2026</time><div class="t"><h3>Threads of Joy begins</h3><p>A poster and logo on Canva turn into a plan.</p></div></li>
+      <li><time>July 2026</time><div class="t"><h3>The first sets come in</h3><p>Kavya fixes up her own outfits to donate the first five full sets.</p></div></li>
+      <li><time>Sept 20, 2026</time><div class="t"><h3>Ganesh Chaturthi Donation Drive</h3><p>Our first community drive, at the Hindu Temple of Nebraska.</p></div></li>
+      <li><time>Oct 2026</time><div class="t"><h3>Sorted and packed</h3><p>Every piece sorted into five age groups, and a first package packed.</p></div></li>
+      <li class="next"><time>Dec 4, 2026</time><div class="t"><h3>Threads of Joy Fashion Show</h3><p>Our first big event, raising funds for shipping.</p></div></li>
     </ol>
   </div>
 
@@ -1163,7 +1215,7 @@ if (new Date() > new Date("2026-12-05T12:00:00-06:00")) document.querySelectorAl
     [sub(".tags li"), "chip"],
     [sub(".sizes > div"), "flip"],
     [sub(".checks li, .timeline li"), "left"],
-    [sub(".steps li, .card, .role, .counter"), ""],
+    [sub(".steps li, .card, .role, .counter, .beats li, .points > div, details.more"), ""],
     [sub(".gallery figure"), "pop"],
     [".ig-grid a", "pop"]
   ];
