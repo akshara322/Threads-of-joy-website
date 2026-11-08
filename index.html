@@ -550,6 +550,15 @@ details.more[open] .more-body { animation: rise .45s ease both; }
   .carousel figure { flex-basis: 42%; }
   .carousel figcaption { font-size: .85rem; }
 }
+.carousel.wide figure { flex-basis: 16rem; }
+@media (max-width: 600px) { .carousel.wide figure { flex-basis: 62%; } }
+.see-all { margin-top: .4rem; }
+.carousel.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); overflow: visible; margin-inline: 0; padding-inline: 0; gap: 1.5rem 1.1rem; }
+.carousel.grid figure { flex: none; }
+@media (max-width: 900px) { .carousel.grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .carousel.grid { grid-template-columns: 1fr 1fr; gap: 1.1rem .8rem; } }
+.carousel-wrap.all .carousel-btns, .carousel-wrap.all .swipe-hint { visibility: hidden; }
+.carousel.grid figure { animation: rise .45s ease both; }
 .swipe-hint { display: none; font-family: var(--f-hand); color: var(--rust); font-size: 1.05rem; }
 @media (max-width: 600px) { .swipe-hint { display: inline; } }
 </style>
@@ -944,7 +953,16 @@ details.more[open] .more-body { animation: rise .45s ease both; }
   <div class="wrap section">
     <div class="head"><p class="eyebrow">September 20 · Hindu Temple of Nebraska</p><h2>Our Ganesh Chaturthi drive</h2></div>
     <div class="quote ig-quote"><p>Our Ganesh Chaturthi Drive was a huge success! We are overjoyed by the amount of support and involvement from the community.</p></div>
-    <div class="gallery">
+    <div class="carousel-wrap">
+    <div class="carousel-head">
+      <p class="eyebrow">Photos from the drive</p>
+      <span class="swipe-hint" aria-hidden="true">swipe →</span>
+      <div class="carousel-btns">
+        <button type="button" class="cbtn" data-dir="-1" aria-label="Previous photos">←</button>
+        <button type="button" class="cbtn" data-dir="1" aria-label="More photos">→</button>
+      </div>
+    </div>
+    <div class="carousel wide" tabindex="0" aria-label="Photos from the Ganesh Chaturthi drive">
       <figure><img src="photos/drive-poster.jpg" alt="Flyer for the Threads of Joy donation drive at the Hindu Temple on September 20" width="800" height="971" loading="lazy"><figcaption>The flyer for our September 20 drive</figcaption></figure>
       <figure><img src="photos/drive-table.jpg" alt="Collection table with donation bins" width="800" height="887" loading="lazy"><figcaption>Our collection table at the temple</figcaption></figure>
       <figure><img src="photos/drive-checklist.jpg" alt="Donation checklist flyers on a bin of folded clothing" width="800" height="887" loading="lazy"><figcaption>A donation checklist on every bin</figcaption></figure>
@@ -953,6 +971,8 @@ details.more[open] .more-body { animation: rise .45s ease both; }
       <figure><img src="photos/drive-trunk.jpg" alt="Car trunk loaded with donations outside the temple" width="800" height="887" loading="lazy"><figcaption>Loading up after the drive</figcaption></figure>
       <figure><img src="photos/drive-closet.jpg" alt="Donations stored in a closet before sorting" width="800" height="887" loading="lazy"><figcaption>Everything collected, waiting to be sorted</figcaption></figure>
       <figure><img src="photos/donation-box.jpg" alt="A cardboard Threads of Joy donation box full of clothing" width="800" height="600" loading="lazy"><figcaption>A Threads of Joy donation box</figcaption></figure>
+    </div>
+    <button type="button" class="btn ghost see-all" aria-expanded="false">See all 8 photos</button>
     </div>
   </div>
 
@@ -1181,9 +1201,14 @@ function show(name, focus) {
   });
   document.title = name === "home" ? "Threads of Joy" : "Threads of Joy · " + label;
   setMenu(false);
-  if (focus) { window.scrollTo(0, 0); document.getElementById("view-" + name).focus({ preventScroll: true }); }
+  if (focus) {
+    document.getElementById("view-" + name).focus({ preventScroll: true });
+    const top = () => window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    top(); requestAnimationFrame(top); setTimeout(top, 60);
+  }
 }
 window.addEventListener("hashchange", () => show(location.hash.slice(1), true));
+window.addEventListener("popstate", () => show(location.hash.slice(1), true));
 
 /* Always start at the top: on refresh, and when a link points to the page you're already on */
 if ("scrollRestoration" in history) history.scrollRestoration = "manual";
@@ -1193,10 +1218,14 @@ document.addEventListener("click", (e) => {
   if (!a) return;
   const target = a.getAttribute("href").slice(1) || "home";
   const current = location.hash.slice(1) || "home";
+  e.preventDefault();
+  setMenu(false);
   if (target === current) {
-    e.preventDefault();
-    setMenu(false);
     window.scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  } else {
+    /* switch pages ourselves so Safari doesn't keep the old scroll position */
+    history.pushState(null, "", "#" + target);
+    show(target, true);
   }
 });
 show(location.hash.slice(1), false);
@@ -1324,6 +1353,16 @@ document.querySelectorAll(".carousel-wrap").forEach((wrap) => {
     row.scrollBy({ left: +b.dataset.dir * (card.offsetWidth + 16) * 2 });
   }));
   row.addEventListener("scroll", update, { passive: true });
+  const all = wrap.querySelector(".see-all");
+  if (all) all.addEventListener("click", () => {
+    const open = !row.classList.contains("grid");
+    row.classList.toggle("grid", open);
+    wrap.classList.toggle("all", open);
+    all.setAttribute("aria-expanded", String(open));
+    all.textContent = open ? "Show fewer" : "See all " + row.children.length + " photos";
+    if (!open) { row.scrollLeft = 0; wrap.scrollIntoView({ block: "start", behavior: "smooth" }); }
+    update();
+  });
   addEventListener("resize", update);
   update();
 });
