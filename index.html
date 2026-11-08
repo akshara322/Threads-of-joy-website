@@ -1152,13 +1152,17 @@ if (new Date() > new Date("2026-12-05T12:00:00-06:00")) document.querySelectorAl
       if (!e.isIntersecting) return;
       e.target.classList.add("in");
       io.unobserve(e.target);
-      const c = e.target.querySelector("[data-count]");
-      if (c) countUp(c);
     });
   }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
 
+  /* the miles count up every time they come into view */
   const stat = document.querySelector("[data-count]");
-  if (stat) io.observe(stat.parentElement);
+  if (stat) {
+    new IntersectionObserver((entries) => entries.forEach((e) => {
+      if (e.isIntersecting) countUp(stat);
+      else if (!stat.dataset.running) stat.textContent = "0" + (stat.dataset.suffix || "");
+    }), { threshold: 0.6 }).observe(stat);
+  }
 
   document.querySelectorAll(sub(".page-hero h1")).forEach((h) => {
     const words = h.textContent.trim().split(/\s+/);
@@ -1181,12 +1185,12 @@ if (new Date() > new Date("2026-12-05T12:00:00-06:00")) document.querySelectorAl
   });
 
   function countUp(el) {
-    if (el.dataset.done) return; el.dataset.done = 1;
-    const end = +el.dataset.count, suf = el.dataset.suffix || "", t0 = performance.now(), dur = 1400;
+    if (el.dataset.running) return; el.dataset.running = 1;
+    const end = +el.dataset.count, suf = el.dataset.suffix || "", t0 = performance.now() + 250, dur = 1800;
     const step = (t) => {
       const k = Math.min(1, (t - t0) / dur), v = Math.round(end * (1 - Math.pow(1 - k, 3)));
-      el.textContent = v.toLocaleString() + suf;
-      if (k < 1) requestAnimationFrame(step);
+      el.textContent = Math.max(0, v).toLocaleString() + suf;
+      if (k < 1) requestAnimationFrame(step); else delete el.dataset.running;
     };
     requestAnimationFrame(step);
   }
