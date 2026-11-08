@@ -1,6 +1,6 @@
 # Threads of Joy website
 
-Website for Threads of Joy, a student-led nonprofit that collects gently used traditional Indian clothing in Omaha and sends it to girls in New Delhi.
+Website for Threads of Joy, a student-led nonprofit that collects gently used traditional Indian clothing in Omaha and sends it to children in New Delhi.
 
 It's a plain static site with no build step:
 
