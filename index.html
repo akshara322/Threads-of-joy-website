@@ -480,6 +480,13 @@ footer li { overflow-wrap: normal; }
 /* a stitch line sews itself under section titles */
 .view:not([data-view="home"]) .head h2::after { content: ""; display: block; width: 0; margin-top: .7rem; border-top: 3px dashed var(--stitch); transition: width 1s .35s cubic-bezier(.2,.7,.2,1); }
 .view:not([data-view="home"]) .head.in h2::after, .view:not([data-view="home"]) .head:not(.reveal) h2::after { width: 3.5rem; }
+/* "How it works": number buttons pop, then the thread between them sews down */
+.steps li.reveal::before { transform: scale(.3) rotate(-90deg); transition: transform .6s var(--d, 0ms) cubic-bezier(.3,1.6,.5,1); }
+.steps li.reveal.in::before { transform: none; }
+.steps li.reveal::after { transform: scaleY(0); transform-origin: 50% 0; transition: transform .7s calc(var(--d, 0ms) + .35s) ease-out; }
+.steps li.reveal.in::after { transform: none; }
+.steps:has(li.reveal)::before { transform: scaleX(0); transform-origin: 0 50%; transition: transform 1.4s .2s ease-out; }
+.steps:has(li.reveal.in)::before { transform: none; }
 /* timeline dots pop as their row appears */
 .timeline li.reveal::before { transform: scale(0); transition: transform .5s .25s cubic-bezier(.3,1.6,.5,1); }
 .timeline li.reveal.in::before { transform: none; }
@@ -1124,6 +1131,8 @@ if (new Date() > new Date("2026-12-05T12:00:00-06:00")) document.querySelectorAl
     /* home stays calm: photos and a couple of key moments */
     ["#view-home .mosaic figure", "pop"],
     ["#view-home .patch, #view-home .ticket", ""],
+    ["#view-home .band .head", ""],
+    ["#view-home .steps li", "step"],
     /* other pages */
     [sub(".page-hero .eyebrow, .page-hero .lede, .page-hero .btns"), ""],
     [sub(".page-hero h1"), "split"],
