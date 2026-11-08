@@ -452,19 +452,6 @@ footer li { overflow-wrap: normal; }
 
 /* ---------- Shorter reading ---------- */
 .lead-p { font-size: 1.2rem; line-height: 1.6; color: var(--ink); }
-.beats { list-style: none; margin: .4rem 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; position: relative; }
-.beats::before { content: ""; position: absolute; top: 1.05rem; left: .5rem; right: 30%; border-top: 2px dashed var(--stitch); opacity: .55; }
-.beats li { position: relative; display: grid; gap: .35rem; align-content: start; padding-top: 2.5rem; min-width: 0; }
-.beats li::before { content: ""; position: absolute; top: .55rem; left: 0; width: 1rem; height: 1rem; border-radius: 50%; background: var(--paper); box-shadow: inset 0 0 0 3px var(--rust); }
-.beats li:last-child::before { background: var(--rust); }
-.beats b { font: 800 1.35rem/1 var(--f-display); font-variation-settings: "SOFT" 100; color: var(--rust); }
-.beats span { font-size: .95rem; line-height: 1.45; color: var(--ink-soft); }
-@media (max-width: 560px) {
-  .beats { grid-template-columns: 1fr; gap: 1.1rem; padding-left: 1.75rem; }
-  .beats::before { top: .9rem; bottom: .9rem; left: .5rem; right: auto; border-top: 0; border-left: 2px dashed var(--stitch); }
-  .beats li { padding-top: 0; }
-  .beats li::before { top: .2rem; left: -1.75rem; }
-}
 .points { display: grid; gap: .9rem; }
 .points > div { padding: 1.1rem 1.25rem 1.15rem 1.35rem; background: var(--card); border-radius: 16px; box-shadow: var(--shadow); display: grid; gap: .3rem; position: relative; overflow: hidden; }
 .points > div::before { content: ""; position: absolute; left: 0; top: 14px; bottom: 14px; border-left: 3px dashed var(--stitch); }
@@ -725,15 +712,10 @@ details.more[open] .more-body { animation: rise .45s ease both; }
       <div class="prose story">
         <h2>Why I started Threads of Joy</h2>
         <p class="lead-p">If someone asked me when I feel the most beautiful, I would have a clear answer. It is when others in my community surround me, celebrating our culture, all dressed up in traditional outfits. I love the feeling of spinning in my sparkly lehenga and jingling as I dance to my favorite Bollywood music.</p>
-        <ol class="beats" aria-label="Kavya's story in three moments">
-          <li><b>Age 7</b><span>Moved from New Delhi to the United States</span></li>
-          <li><b>Age 10</b><span>Tried to hide every Indian part of herself to fit in</span></li>
-          <li><b>Now</b><span>Proud of her culture, and sharing it with girls in Delhi</span></li>
-        </ol>
+        <p>But if you asked me this question 5 years ago, I would have had a very different answer. Little 10-year-old Kavya had a very different idea of beautiful. One that definitely did not include embarrassing myself in my cultural clothing. At 7 years old, my family and I moved from New Delhi, India, to the United States. I was determined to erase every Indian part of myself to make me more American.</p>
         <details class="more">
           <summary><span class="closed">Read Kavya's full story</span><span class="opened">Show less</span></summary>
           <div class="more-body">
-            <p>But if you asked me this question 5 years ago, I would have had a very different answer. Little 10-year-old Kavya had a very different idea of beautiful. One that definitely did not include embarrassing myself in my cultural clothing. At 7 years old, my family and I moved from New Delhi, India, to the United States. I was determined to erase every Indian part of myself to make me more American.</p>
             <p>If I could talk to that little girl now, I would tell her that the US is an amazing place made of all kinds of cultures, religions, and nationalities. I didn't have to erase any part of myself to fit in, and the only way I would find my people was when I learned to embrace every part of myself.</p>
             <p>As I started to wear traditional clothing more often, I discovered how amazing it felt. I felt a connection to my culture like never before and began to wonder how I hated this all these years. However, through this process, I discovered kids grow out of traditional Indian clothing incredibly fast. It seemed so wasteful, only wearing a piece of clothing once or twice a year before having to tuck it away in a closet for years, not knowing what to do with it.</p>
             <p>This exact situation made my mind start racing. What else could be done with this clothing? I knew a ton of friends who dealt with the same problem and decided to research what people were doing with their gently used Indian clothing. I discovered an entire community of South Asian women with saris, kurtis, lehengas, and dupattas going unused after Diwali and weddings. That's when I started working on Threads of Joy. It started as a poster and logo on Canva, and snowballed into this amazing organization.</p>
@@ -1231,7 +1213,7 @@ if (new Date() > new Date("2026-12-05T12:00:00-06:00")) document.querySelectorAl
     [sub(".tags li"), "chip"],
     [sub(".sizes > div"), "flip"],
     [sub(".checks li, .timeline li"), "left"],
-    [sub(".steps li, .card, .role, .counter, .beats li, .points > div, details.more"), ""],
+    [sub(".steps li, .card, .role, .counter, .points > div, details.more"), ""],
     [sub(".gallery figure"), "pop"],
     [".ig-grid a", "pop"]
   ];
