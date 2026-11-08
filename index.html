@@ -529,6 +529,29 @@ details.more[open] .more-body { animation: rise .45s ease both; }
 .timeline li.reveal::before { transform: scale(0); transition: transform .5s .25s cubic-bezier(.3,1.6,.5,1); }
 .timeline li.reveal.in::before { transform: none; }
 @media (prefers-reduced-motion: reduce) { .reveal, .reveal.in { opacity: 1; transform: none; } .page-hero h1 .w > span { transform: none; } }
+
+/* ---------- Donated outfits: swipe sideways ---------- */
+.carousel-wrap { margin-top: 2.75rem; }
+.carousel-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.carousel-btns { display: flex; gap: .5rem; }
+.cbtn { width: 42px; height: 42px; border-radius: 50%; border: 2px dashed var(--stitch); background: var(--card); color: var(--rust); font: 700 1.1rem/1 var(--f-body); cursor: pointer; transition: background-color .15s, opacity .15s; }
+.cbtn:hover { background: var(--paper-2); }
+.cbtn:disabled { opacity: .35; cursor: default; }
+.carousel { display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; overscroll-behavior-x: contain; padding-block: .9rem 1.4rem; margin-top: .4rem; scrollbar-width: none; }
+.carousel::-webkit-scrollbar { display: none; }
+.carousel:focus-visible { outline: 2px dashed var(--rust); outline-offset: 4px; border-radius: 12px; }
+.carousel figure { flex: 0 0 13rem; margin: 0; display: grid; gap: .55rem; align-content: start; scroll-snap-align: start; }
+.carousel img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 14px; box-shadow: var(--shadow); background: var(--paper-2); transition: transform .3s ease; }
+.carousel figure:hover img { transform: translateY(-3px) rotate(-.6deg); }
+.carousel figcaption { font-size: .92rem; color: var(--ink-soft); line-height: 1.35; }
+@media (max-width: 600px) {
+  .carousel-btns { display: none; }
+  .carousel { margin-inline: calc(-1 * max(20px, env(safe-area-inset-left, 0px))); padding-inline: max(20px, env(safe-area-inset-left, 0px)); scroll-padding-inline: max(20px, env(safe-area-inset-left, 0px)); gap: .8rem; }
+  .carousel figure { flex-basis: 42%; }
+  .carousel figcaption { font-size: .85rem; }
+}
+.swipe-hint { display: none; font-family: var(--f-hand); color: var(--rust); font-size: 1.05rem; }
+@media (max-width: 600px) { .swipe-hint { display: inline; } }
 </style>
 </head>
 <body>
@@ -812,14 +835,23 @@ details.more[open] .more-body { animation: rise .45s ease both; }
       <div><b>15–18</b><span>years</span></div>
     </div>
 
-    <p class="eyebrow" style="margin-top:2.75rem">Donated by our community</p>
-    <div class="gallery" style="--cols:6">
+    <div class="carousel-wrap">
+    <div class="carousel-head">
+      <p class="eyebrow">Donated by our community</p>
+      <span class="swipe-hint" aria-hidden="true">swipe →</span>
+      <div class="carousel-btns">
+        <button type="button" class="cbtn" data-dir="-1" aria-label="Previous outfits">←</button>
+        <button type="button" class="cbtn" data-dir="1" aria-label="More outfits">→</button>
+      </div>
+    </div>
+    <div class="carousel" tabindex="0" aria-label="Outfits donated by our community">
       <figure><img src="photos/lehenga-blue.jpg" alt="Light blue lehenga with silver embroidery" width="800" height="887" loading="lazy"><figcaption>Light blue lehenga</figcaption></figure>
       <figure><img src="photos/kurta-red.jpg" alt="Red kurta set with a gold-woven dupatta" width="800" height="887" loading="lazy"><figcaption>Red kurta set with dupatta</figcaption></figure>
       <figure><img src="photos/lehenga-lavender.jpg" alt="Lavender lehenga with sequin work" width="800" height="887" loading="lazy"><figcaption>Lavender lehenga</figcaption></figure>
       <figure><img src="photos/lehenga-pink.jpg" alt="Pink lehenga with an embroidered navy top" width="800" height="887" loading="lazy"><figcaption>Pink lehenga with embroidered top</figcaption></figure>
       <figure><img src="photos/anarkali-green.jpg" alt="Green printed cotton anarkali for a young girl" width="800" height="887" loading="lazy"><figcaption>Printed cotton anarkali</figcaption></figure>
       <figure><img src="photos/pavadai-cream.jpg" alt="Cream and gold skirt and top set" width="800" height="887" loading="lazy"><figcaption>Cream and gold skirt set</figcaption></figure>
+    </div>
     </div>
 
     <div class="split" style="margin-top:2.5rem">
@@ -1213,6 +1245,7 @@ if (new Date() > new Date("2026-12-05T12:00:00-06:00")) document.querySelectorAl
     [sub(".tags li"), "chip"],
     [sub(".sizes > div"), "flip"],
     [sub(".checks li, .timeline li"), "left"],
+    [sub(".carousel-wrap"), ""],
     [sub(".steps li, .card, .role, .counter, .points > div, details.more"), ""],
     [sub(".gallery figure"), "pop"],
     [".ig-grid a", "pop"]
@@ -1277,6 +1310,23 @@ if (new Date() > new Date("2026-12-05T12:00:00-06:00")) document.querySelectorAl
     });
   }, { passive: true });
 })();
+
+/* Donated outfits: arrow buttons scroll the row */
+document.querySelectorAll(".carousel-wrap").forEach((wrap) => {
+  const row = wrap.querySelector(".carousel");
+  const [prev, next] = wrap.querySelectorAll(".cbtn");
+  const update = () => {
+    prev.disabled = row.scrollLeft < 4;
+    next.disabled = row.scrollLeft + row.clientWidth > row.scrollWidth - 4;
+  };
+  wrap.querySelectorAll(".cbtn").forEach((b) => b.addEventListener("click", () => {
+    const card = row.querySelector("figure");
+    row.scrollBy({ left: +b.dataset.dir * (card.offsetWidth + 16) * 2 });
+  }));
+  row.addEventListener("scroll", update, { passive: true });
+  addEventListener("resize", update);
+  update();
+});
 
 const copiedMsg = document.getElementById("copied");
 document.getElementById("copy-email").addEventListener("click", () => {
