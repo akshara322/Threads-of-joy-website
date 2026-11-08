@@ -466,6 +466,11 @@ footer li { overflow-wrap: normal; }
 .model-copy .btn { background: var(--on-rust); color: var(--rust); border-color: var(--on-rust); }
 .model-copy .btn:hover { background: var(--paper-2); border-color: var(--paper-2); }
 .role a { font-weight: 700; }
+.announce .cta { white-space: nowrap; }
+@media (max-width: 380px) { .announce .wrap { font-size: .78rem; gap: .5rem; } }
+.ticket .go { display: grid; gap: .6rem; }
+.ticket .btn.alt, .model-copy .btn.alt { background: transparent; color: var(--on-rust); border: 2px dashed color-mix(in srgb, var(--on-rust) 70%, transparent); box-shadow: none; }
+.ticket .btn.alt:hover, .model-copy .btn.alt:hover { background: color-mix(in srgb, var(--on-rust) 14%, transparent); }
 @media (max-width: 640px) { .model-call { grid-template-columns: 1fr; gap: 1.2rem; } .model-date { width: 5.5rem; } .model-date b { font-size: 2.3rem; } }
 
 /* ---------- Shorter reading ---------- */
@@ -589,7 +594,7 @@ details.more[open] .more-body { animation: rise .45s ease both; }
   <div class="wrap">
     <b>Save the date</b>
     <span class="long">Threads of Joy Fashion Show · Friday, December 4, 2026</span><span class="short">Fashion Show · Fri, Dec 4</span>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfMgt5X_auyc-1i8EtLIXe_TwxhmGfg8sROHEHiexHESJbGJg/viewform" target="_blank" rel="noopener">Sign up to model</a>
+    <span class="cta"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfMgt5X_auyc-1i8EtLIXe_TwxhmGfg8sROHEHiexHESJbGJg/viewform" target="_blank" rel="noopener">Sign up to model</a> or <a data-link="gofundme" href="#contact">donate</a></span>
   </div>
 </div>
 
@@ -741,7 +746,7 @@ details.more[open] .more-body { animation: rise .45s ease both; }
         <h3>Threads of Joy Fashion Show</h3>
         <p>An evening celebrating traditional Indian clothing, raising funds and donations for girls in New Delhi. Kids and teens ages 3 to 18 can walk the runway. Venue and tickets coming soon.</p>
       </div>
-      <div class="go"><a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfMgt5X_auyc-1i8EtLIXe_TwxhmGfg8sROHEHiexHESJbGJg/viewform" target="_blank" rel="noopener">Sign up to model</a></div>
+      <div class="go"><a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfMgt5X_auyc-1i8EtLIXe_TwxhmGfg8sROHEHiexHESJbGJg/viewform" target="_blank" rel="noopener">Sign up to model</a><a class="btn alt" data-link="gofundme" href="#contact">Donate</a></div>
     </div>
   </div>
 </section>
@@ -1061,7 +1066,7 @@ details.more[open] .more-body { animation: rise .45s ease both; }
         <p class="eyebrow">Fashion show · December 4</p>
         <h2>Walk the runway with us</h2>
         <p>Are you a kid or teen between 3 and 18? Model a traditional outfit at the Threads of Joy Fashion Show and help raise money to send clothing to girls in New Delhi.</p>
-        <div class="btns"><a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfMgt5X_auyc-1i8EtLIXe_TwxhmGfg8sROHEHiexHESJbGJg/viewform" target="_blank" rel="noopener">Fill out the model interest form <span class="arr" aria-hidden="true">→</span></a></div>
+        <div class="btns"><a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfMgt5X_auyc-1i8EtLIXe_TwxhmGfg8sROHEHiexHESJbGJg/viewform" target="_blank" rel="noopener">Fill out the model interest form <span class="arr" aria-hidden="true">→</span></a><a class="btn alt" data-link="gofundme" href="#contact">Donate to the show</a></div>
       </div>
     </div>
 
