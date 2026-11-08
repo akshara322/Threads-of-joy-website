@@ -1170,6 +1170,21 @@ function show(name, focus) {
   if (focus) { window.scrollTo(0, 0); document.getElementById("view-" + name).focus({ preventScroll: true }); }
 }
 window.addEventListener("hashchange", () => show(location.hash.slice(1), true));
+
+/* Always start at the top: on refresh, and when a link points to the page you're already on */
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+window.scrollTo(0, 0);
+document.addEventListener("click", (e) => {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a) return;
+  const target = a.getAttribute("href").slice(1) || "home";
+  const current = location.hash.slice(1) || "home";
+  if (target === current) {
+    e.preventDefault();
+    setMenu(false);
+    window.scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  }
+});
 show(location.hash.slice(1), false);
 
 document.querySelectorAll("[data-link]").forEach(a => {
